@@ -9,6 +9,19 @@ menu = {
     "5": {"name": "Juice", "price"    :250},
 }
 
+
+def login():
+    print("--------LOGIN------------")
+    username = input("Enter Username: ")
+    password = input("Enter Password: ")
+
+    if username == "admin" and password == "1234" :
+        print("Login Sucessfull! \n")
+        return True
+    else:
+        print("Login Failed! \n")
+        return False
+
 #----------Displays the Cafe menu---------------
 def display_menu():
     """
@@ -93,7 +106,7 @@ def menu_sorting(sort_type):
 
 def search_item():
     """
-    This fucntion find items by typing part of item name.
+    This function find items by typing part of item name.
 
     Returns:
         None:
@@ -216,9 +229,14 @@ def generate_receipt(order_items,subtotal,discount,final_total):
 
 def main():
     """
-
+    Main entry point for the Central Perl Management System.
+    Handles the login process and the main application loop.
     :return:
     """
+    if not login():
+        print("Unauthorized access.")
+        return
+
     while True:
         print("\n" + "=" * 60)
         print("             CENTRAL PERK MANAGEMENT SYSTEM")
