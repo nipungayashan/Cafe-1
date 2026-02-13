@@ -1,6 +1,9 @@
-from typing import Dict, Any
-import sys
+"""
+Central  Perk Cafe Management System
+This program allows users to view cafe menu, search for menu items, place an order.
+calculate bill with discount applied and generate receipts.
 
+"""
 menu = {
     "1": {"name": "Milk Tea", "price" :140},
     "2": {"name": "Coffee", "price"   :200},
@@ -45,7 +48,7 @@ def get_valid_int_input(prompt):
     This function keeps asking user for a number until correct number is entered.
     It prevents program crash when user types letters instead of numbers.
 
-    Args:
+    Parameters:
     prompt (str): The message shown to the user e.g.:("Enter Choice:")
 
     Returns:
@@ -80,7 +83,7 @@ def menu_sorting(sort_type):
     """
     This function sorts the menu and shows it in a sorted order.
     Sorting by price or name is done through this functon.
-    Args:
+    Parameter:
     sort_type: 'name' to sort alphabetically or 'price' to sort by price.
     Returns:
         None
@@ -158,7 +161,7 @@ def calculate_subtotal(order_items):
     """
     This function adds up total price before discount.
 
-    Args:
+    Parameters:
         order_items: dictionary of ordered items
 
     Returns:
@@ -182,7 +185,7 @@ def calculate_bill(order_items):
     This function calculates complete bill with discount if applicable
     for the order.
 
-    Args:
+    Parameters:
     order_items: Customer order details
 
     Returns:
@@ -198,7 +201,7 @@ def generate_receipt(order_items,subtotal,discount,final_total):
     This function creates a complete customer bill receipt showing all ordered
     items with quantities,unit prices, item totals, subtotal, discount (if applicable)
     and final payable amount.
-    Args:
+    Parameters:
      order_items: Order details
      subtotal:Price before discount
     :param discount:
@@ -254,8 +257,14 @@ def main():
                 case 1:
                     display_menu()
                 case 2:
+                    print("Sort Options: ")
                     sort_choice = get_valid_int_input("1=Name, 2=Price: ")
-                    menu_sorting('name' if sort_choice == 1 else 'price')
+                    if sort_choice == 1:
+                        menu_sorting('name')
+                    elif sort_choice == 2:
+                        menu_sorting('price')
+                    else:
+                        print("Invalid sort option! Please select from 1-2")
                 case 3:
                     search_item()
                 case 4:
